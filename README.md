@@ -1,44 +1,21 @@
-# Roblox-Lua-Portfolio
-This is my portfolio
-Roblox Lua Portfolio
+This repository contains a single Luau file created to demonstrate scripting ability for review purposes. To meet the review requirement, the file combines multiple game systems into one organized script instead of separating it into modules. The script is long enough to show structure, logic flow and API knowledge without unnecessary filler.
 
-This repository contains two advanced Roblox Lua systems that demonstrate gameplay programming, use of services, and clean server-side architecture.
+Main file: PortfolioScript.lua
 
-1. Hairdryer Enemy AI
-File: HairdryerEnemy.lua
+Script contents and features
 
-A physics based AI enemy that actively chases a player. It matches speed, maintains distance, teleports to catch up if too far, and kills the player on contact through ragdoll behavior.
+Chasing enemy AI A physics based enemy that automatically hunts players. The system uses CFrame and AssemblyLinearVelocity for movement and prediction, and picks targets dynamically during gameplay. Features include: finds closest player and updates target while active  predicts movement using velocity for smoother chase behavior spins faster when close to the player teleports if the target gets too far ahead kills the player on contact using Humanoid health The behaviour is written as a small class using a metatable table pattern. Each enemy is managed individually inside the Heartbeat update.
+Patrol NPC using PathfindingService A non-player character system that follows paths around the map. NPCs use PathfindingService to move between waypoints and can fall back to a looped square patrol if waypoints are not provided. Features include: reads waypoint parts from a folder named Waypoints inside the NPC model generates paths and walks through waypoints with Humanoid:MoveTo continues patrolling as long as the model exists • simple retry behaviour if pathfinding fails This system demonstrates navigation logic and basic state handling in a reusable form.
+Gamepass tool giver A server-side system that gives a tool to players who own a specific gamepass. Ownership checks are cached to reduce API calls and tools are granted instantly when purchased. Features include:  automatic tool grant on join when owned immediate tool grant when purchased in game checks both Backpack and Character to avoid duplicates requires a Tool with the same name inside ServerStorage to function This part demonstrates handling MarketplaceService, monetisation logic and inventory integration.
 
-Features:
-Locates closest player automatically
-Speed matching system to keep tension
-Maintains a standoff distance of around 10 studs
-Teleports closer if the player outruns it
-Ragdoll + instant kill mechanic
-Rotation speeds up when near target for visual tension
 
-Requirements:
-Script placed inside the enemy model
-Model must contain a Humanoid
-Attachment named BlowAttachment for effects
+Purpose
 
-2. Gamepass Tool Giver
-File: GamepassToolGiver.lua
-
-A server side system that grants tools to gamepass owners instantly on join or immediately upon purchase.
-
-Features:
-Detects ownership using MarketplaceService
-Gives tool automatically on join if owned
-Gives tool instantly after purchase confirmation
-Ownership caching to reduce calls
-Prevents duplicate tools
-
-Setup steps:
-1. Place script inside ServerScriptService
-2. Put a Tool inside ServerStorage using the same name as TOOL_NAME
-3. Change GAMEPASS_ID to your own id in the script
-
-These projects demonstrate scripting ability in game services, monetization systems, replication-safe tool handling, and structured code suitable for production.
-
-Suitable for portfolio and professional demonstration.
+This script is intended as a self-contained demonstration of Roblox development ability. It shows:
+use of core Roblox services including Players, RunService, PathfindingService, MarketplaceService and ServerStorage
+control of physics-based movement and CFrame manipulation
+ implementatin of class-style code using metatables
+NPC behaviour and pathfinding logic
+safe and practical gamepass reward handling
+ clean structure, readable flow, minimal but clear comments
+The goal is to present real gameplay-ready systems in one file for review, reflecting how I approach structuring and writing server logic in production projects.
